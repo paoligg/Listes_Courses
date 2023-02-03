@@ -100,8 +100,41 @@ a {
   text-decoration: none;
 }
 
+.list-creation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: right;  
+margin-bottom: 20px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  );
+}
+.list-display{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+border:gray solid 1px;
+  background: linear-gradient(
+    transparent,
+    rgb(var(--background-end-rgb))
+  );
+}
+.list-elements{
+  display: grid;
+
+ 
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
-    color-scheme: dark;
+    color-scheme: gray;
   }
 }
