@@ -9,6 +9,7 @@ export default function Home() {
   const [savedList, setSavedList] = useState(false);
   const [link, setLink] = useState("https://esilv.olfsoftware.fr/td5/register"); 
   const [link2, setLink2] = useState("https://esilv.olfsoftware.fr/td5/courses");
+  const [id, setId] = useState("");
 
   useEffect(() => {
     const data = localStorage.getItem("list");
@@ -28,7 +29,6 @@ export default function Home() {
       setSavedList(true);
     }
     else{
-      console.log("Element déjà présent dans la liste");
       const index = list.findIndex(item => item.produit === element);
       const newList = [...list];
       newList[index].qte = quantity;
@@ -41,8 +41,6 @@ export default function Home() {
   } 
 
   function handleModify(i) {
-    console.log(i);
-    console.log(list[i]);  
     setQuantity(list[i].qte);
     setElement(list[i].produit);
   }
@@ -70,6 +68,7 @@ export default function Home() {
         //const quantity = item.qte;
         //return {element, quantity};
       //}));
+      setId(get.id);
       setList(get.courses);
       localStorage.setItem("list", JSON.stringify(list));
       });
@@ -93,7 +92,8 @@ async function handleSave(){
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({courses: list}),
+      body: JSON.stringify({id : id , chg: list}),
+
     })
       .then((result) => result.json())
       .then((get) => {
