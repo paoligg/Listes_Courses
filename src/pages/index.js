@@ -80,30 +80,20 @@ export default function Home() {
 };
 
 async function handleSave(){
-  const data = localStorage.getItem("list");
-  if (data) {
-    setList(JSON.parse(data));
-    setSavedList(true);
-  }
-  try{
-    const handleClick = await
-    fetch(link2, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({id : id , chg: list}),
+  
+  const params = new URLSearchParams({
+    id,
+    chg: JSON.stringify([list]),
+  });
+  const res = await fetch('https://esilv.olfsoftware.fr/td5/courses', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body:params.toString(),  
+})
+console.log(res);
 
-    })
-      .then((result) => result.json())
-      .then((get) => {
-        console.log(get);
-      });
-    
-  }
-  catch (err) {
-    console.log(err);
-  }
 };
 
   return (
